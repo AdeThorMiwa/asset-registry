@@ -12,7 +12,7 @@ class BaseRepository {
     }
 
     protected intToDate(sec: bigint | number) {
-        return new Date(Number(sec) * 1000);
+        return new Date(Number(sec));
     }
 
     normalizeFilters(filters: Record<string, unknown>) {

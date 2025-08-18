@@ -22,6 +22,7 @@ export class BlockLogProcessor {
     }
 
     public async onLogs(logs: Log[]) {
+        if (logs.length) Logger.info("onLogs called")
         logs.forEach(async log => {
             if (await this.hasEnoughConfirmation(log)) {
                 await this.decodeAndProcess(log);
@@ -40,9 +41,15 @@ export class BlockLogProcessor {
         return logs as Log[]
     }
 
-    private async hasEnoughConfirmation(log: Log) {
+    private async getConfirmationCount(log: Log) {
+        if (!log.blockNumber) return 0;
         const currentBlockNumber = await this.rpc.getBlockNumber();
-        return !log.blockNumber || currentBlockNumber - log.blockNumber < BigInt(Env.CONFIRMATIONS)
+        return currentBlockNumber - log.blockNumber
+    }
+
+    private async hasEnoughConfirmation(log: Log) {
+        const confirmations = await this.getConfirmationCount(log);
+        return confirmations >= BigInt(Env.CONFIRMATIONS)
     }
 
     private async decodeAndProcess(log: Log) {
@@ -79,7 +86,7 @@ export class BlockLogProcessor {
     private async parseDecodedEventLog(decoded: DecodedEventLog): Promise<ParsedLogEvent> {
         const eventName = decoded.eventName as EventName
         const block = await this.rpc.getBlock({ blockHash: decoded.originalLog.blockHash! });
-        const timestamp = new Date(block.timestamp.toString());
+        const timestamp = new Date(Number(block.timestamp.toString()) * 1000);
         const blockNumber = decoded.originalLog.blockNumber!;
         const hash = decoded.originalLog.transactionHash!;
         const logIndex = Number(decoded.originalLog.logIndex!);

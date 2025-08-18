@@ -6,8 +6,8 @@
     "compile": "hardhat compile",
     "test": "hardhat test",
     "dev": "hardhat compile && hardhat test",
-    "deploy": "hardhat ignition deploy ./ignition/modules/ProxyModule.ts",
-    "seed": "rimraf ./ignition/deployments/chain-31337 && hardhat run scripts/seed_activity.ts",
+    "deploy": "rimraf ./ignition/deployments/chain-1337 && hardhat ignition deploy ./ignition/modules/ProxyModule.ts",
+    "seed": "rimraf ./ignition/deployments/chain-1337 && hardhat run scripts/seed_activity.ts",
     "start:localhost": "chmod +x ./bootstrap-anvil.sh && ./bootstrap-anvil.sh",
     "asset:register": "hardhat run scripts/register-asset.ts",
     "asset:transfer": "hardhat run scripts/transfer-asset.ts"

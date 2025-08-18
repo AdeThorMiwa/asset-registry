@@ -7,7 +7,7 @@ class DatabaseService {
 
     connect() {
         this.client = new PrismaClient({
-            log: Env.NODE_ENV === "production" ? [] : ["query", "error", "warn"],
+            log: Env.NODE_ENV === "production" ? [] : ["error", "warn"],
         });
 
         process.on("beforeExit", async () => {

@@ -18,6 +18,7 @@ export class BlockEventProcessor implements Record<EventName, LogEventProcessorF
 
     public [EventName.AssetRegistered] = async (event: ParsedLogEvent<AssetRegisteredEventArgs>) => {
         Logger.debug("New [EventName.AssetRegistered] event");
+        // console.log(event)
 
         const payload: ISaveAssetPayload = {
             assetId: event.args.assetId,
@@ -32,6 +33,7 @@ export class BlockEventProcessor implements Record<EventName, LogEventProcessorF
 
     public [EventName.OwnershipTransferred] = async (event: ParsedLogEvent<OwnershipTransferEventArgs>) => {
         Logger.debug("New [EventName.OwnershipTransferred] event");
+        // console.log(event)
 
         const asset = await this.assetRepository.getById(event.args.assetId);
         if (!asset) {

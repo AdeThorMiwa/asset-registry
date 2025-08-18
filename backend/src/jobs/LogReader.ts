@@ -30,7 +30,7 @@ export class LogReader implements ISchedulable {
             let cursor = await cursorRepository.getCursor(this.cursorKey());
             const fromBlock = cursor + 1n;
             const toBlock = await Container.get(BlockLogProcessor).getCurrentBlockNumber(); // to current block
-
+            Logger.info("[LogReader] reading logs from %s to %s", fromBlock, toBlock);
             let processed = 0n;
             let nextFrom = fromBlock;
 
@@ -53,6 +53,7 @@ export class LogReader implements ISchedulable {
     private async processRange(fromBlock: bigint, toBlock: bigint) {
         const processor = Container.get(BlockLogProcessor);
         const logs = await processor.fetchLogs(fromBlock, toBlock);
+        if (logs.length) Logger.info("For range %s to %s found %s logs", fromBlock, toBlock, logs.length)
         await processor.onLogs(logs)
     }
 }

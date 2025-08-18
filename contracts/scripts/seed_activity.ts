@@ -121,42 +121,42 @@ async function main() {
     let totalRegs = 0;
     let totalTransfers = 0;
 
-    // for (let d = 0; d < daily.length; d++) {
+    for (let d = 0; d < daily.length; d++) {
 
-    //     // A) registrations for the day (staggered in the first 30 minutes)
-    //     for (let r = 0; r < regsPerDay; r++) {
-    //         const byIdx = (d + r) % owners.length;
-    //         const assetId = await registerOne(byIdx);
-    //         await increaseByMinute(hre)
-    //         assetIds.push(assetId);
-    //         totalRegs++;
-    //     }
+        // A) registrations for the day (staggered in the first 30 minutes)
+        for (let r = 0; r < regsPerDay; r++) {
+            const byIdx = (d + r) % owners.length;
+            const assetId = await registerOne(byIdx);
+            await increaseByMinute(hre)
+            assetIds.push(assetId);
+            totalRegs++;
+        }
 
-    //     // Ensure we have at least some assets before starting transfers
-    //     if (assetIds.length === 0) {
-    //         // Register 1 immediately
-    //         const assetId = await registerOne(d % owners.length);
-    //         await increaseByMinute(hre)
-    //         assetIds.push(assetId);
-    //         totalRegs++;
-    //     }
+        // Ensure we have at least some assets before starting transfers
+        if (assetIds.length === 0) {
+            // Register 1 immediately
+            const assetId = await registerOne(d % owners.length);
+            await increaseByMinute(hre)
+            assetIds.push(assetId);
+            totalRegs++;
+        }
 
-    //     // B) transfers for the day (spread across midday to evening)
-    //     const transfersToday = daily[d];
-    //     for (let k = 0; k < transfersToday; k++) {
-    //         // round-robin pick an asset
-    //         const assetId = assetIds[(d * 97 + k) % assetIds.length]; // pseudo-random-ish but deterministic
-    //         await transferOne(assetId);
-    //         await increaseByMinute(hre)
-    //         totalTransfers++;
-    //     }
+        // B) transfers for the day (spread across midday to evening)
+        const transfersToday = daily[d];
+        for (let k = 0; k < transfersToday; k++) {
+            // round-robin pick an asset
+            const assetId = assetIds[(d * 97 + k) % assetIds.length]; // pseudo-random-ish but deterministic
+            await transferOne(assetId);
+            await increaseByMinute(hre)
+            totalTransfers++;
+        }
 
-    //     if ((d + 1) % 10 === 0) {
-    //         console.log(`Day ${d + 1}/${daily.length}: regs=${totalRegs}, transfers=${totalTransfers}`);
-    //     }
+        if ((d + 1) % 10 === 0) {
+            console.log(`Day ${d + 1}/${daily.length}: regs=${totalRegs}, transfers=${totalTransfers}`);
+        }
 
-    //     await increaseByDay(hre)
-    // }
+        await increaseByDay(hre)
+    }
 
     // set timestamp to current date
     await hre.provider.request({
