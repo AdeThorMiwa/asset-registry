@@ -1,0 +1,32 @@
+node_modules
+# Keep environment variables out of version control
+.env
+
+backend/prisma/prisma
+
+# Node modules
+/node_modules
+
+# Compilation output
+/dist
+
+# pnpm deploy output
+/bundle
+
+# Hardhat Build Artifacts
+contracts/artifacts
+
+# Hardhat compilation (v2) support directory
+contracts/cache
+
+# Typechain output
+/types
+
+# Hardhat coverage reports
+/coverage
+
+contracts/ignition/deployments
+
+analytics.json
+chart.png
+summary.md

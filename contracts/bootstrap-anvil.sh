@@ -1,0 +1,1 @@
+anvil --chain-id 31337 --timestamp 1280759397 --block-time 0.01 --base-fee 0 --mnemonic "test test test test test test test test test test test junk"
