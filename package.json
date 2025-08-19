@@ -9,7 +9,8 @@
     "server:launch": "pnpm -F @asset_registry/backend dev",
     "asset:register": "pnpm -F @asset_registry/contracts asset:register --network localhost",
     "asset:transfer": "pnpm -F @asset_registry/contracts asset:transfer --network localhost",
-    "test": "pnpm -F @asset_registry/contracts test"
+    "test": "pnpm -F @asset_registry/contracts test",
+    "db:migrate": "pnpm -F @asset_registry/backend db:migrate"
   },
   "keywords": [],
   "author": "AdeThorMiwa <bendamyth@gmail.com>",
