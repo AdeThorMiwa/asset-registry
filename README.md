@@ -69,7 +69,15 @@ This project uses PostgreSQL to store event data. We'll use Docker to run a loca
 docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
 ```
 
-### Step 4: Configure and Launch the Backend
+### Step 4: Run Database Migrations
+
+Before starting the backend, you need to apply the database schema. This will create the necessary tables for storing asset and event data.
+
+```js
+pnpm db:migrate
+```
+
+### Step 5: Configure and Launch the Backend
 
 Now, let's configure and start the backend.
 
