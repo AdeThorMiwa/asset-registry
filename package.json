@@ -8,7 +8,8 @@
     "node:seed": "pnpm -F @asset_registry/contracts seed --network localhost",
     "server:launch": "pnpm -F @asset_registry/backend dev",
     "asset:register": "pnpm -F @asset_registry/contracts asset:register --network localhost",
-    "asset:transfer": "pnpm -F @asset_registry/contracts asset:transfer --network localhost"
+    "asset:transfer": "pnpm -F @asset_registry/contracts asset:transfer --network localhost",
+    "test": "pnpm -F @asset_registry/contracts test"
   },
   "keywords": [],
   "author": "AdeThorMiwa <bendamyth@gmail.com>",
