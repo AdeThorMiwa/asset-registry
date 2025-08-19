@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@asset_registry/backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,6 +17,7 @@
   "author": "Adethormiwa <adethormiwa1@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@asset_registry/contracts": "workspace:^",
     "@prisma/client": "^6.14.0",
     "body-parser": "^2.2.0",
     "chartjs-node-canvas": "^5.0.0",

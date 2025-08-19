@@ -25,7 +25,7 @@ export class BlockEventProcessor implements Record<EventName, LogEventProcessorF
             registeredBy: event.args.owner,
             currentOwner: event.args.owner,
             description: event.args.description,
-            timestamp: event.args.registrationTimestamp,
+            timestamp: event.args.registrationTimestamp * 1000n,
         };
 
         await this.assetRepository.save(payload);

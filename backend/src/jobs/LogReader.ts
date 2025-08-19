@@ -12,7 +12,7 @@ import { Env } from "../config/env";
 export class LogReader implements ISchedulable {
     name = LogReader.name;
     schedule = CronTime.every(1).minutes();
-    disabled = true;
+    // disabled = true;
 
     // blocks per batch
     private BATCH_SIZE = 1000n;
